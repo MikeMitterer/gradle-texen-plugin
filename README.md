@@ -8,6 +8,13 @@ I provided a sample here on GitHub. Check it out.
 *	**[TexenPlugin Sample](https://github.com/MikeMitterer/gradle-texen-plugin-sample)** 
 *	**[What is Texen](http://velocity.apache.org/engine/devel/texen.html)**
 
+Generate SQL in Sample (build/database/out)
+	./gradlew texen
+	
+Write property file + generate SQL (build/database/out)
+	./gradlew test2
+	
+	
 ### Configuration
 	buildscript {
 	    repositories {
