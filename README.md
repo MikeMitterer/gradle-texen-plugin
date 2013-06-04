@@ -19,7 +19,7 @@ Write property file + generate SQL (build/database/out)
 	
 Video shows how the plugin works
 
-<iframe width="560" height="315" src="http://www.youtube.com/embed/ggKJ9LoPDEo" frameborder="0" allowfullscreen></iframe>	
+*	**[Screencast](http://www.mikemitterer.at/infopoint/programmierung/texen-gradle-plugin.html)**
 	
 ### Configuration
 	buildscript {
