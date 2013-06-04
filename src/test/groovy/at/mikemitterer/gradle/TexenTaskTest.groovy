@@ -14,5 +14,8 @@ class TexenTaskTest {
 		def task = project.task('texen', type: TexenTask)
 
 		assertTrue(task instanceof TexenTask)
+
+		final TexenTask t = task
+		//t.texen();
 	}
 }
