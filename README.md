@@ -1,7 +1,8 @@
 Texen Gradle Plugin
 ====================
 
-This plugin for Gradle allows you to generate all sort of text output. To use it, simply include the required JARs via `buildscript {}` and 'apply' the plugin:
+This plugin for Gradle allows you to generate all sort of text output.<br>
+To use it, simply include the required JARs via `buildscript {}` and 'apply' the plugin
 
 ### Quickstart
 I provided a sample here on GitHub. Check it out.
@@ -16,6 +17,9 @@ Write property file + generate SQL (build/database/out)
 
 	./gradlew test2
 	
+Video shows how the plugin works
+
+<iframe width="560" height="315" src="http://www.youtube.com/embed/ggKJ9LoPDEo" frameborder="0" allowfullscreen></iframe>	
 	
 ### Configuration
 	buildscript {
