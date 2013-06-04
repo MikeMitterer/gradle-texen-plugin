@@ -5,7 +5,8 @@ This plugin for Gradle allows you to generate all sort of text output. To use it
 
 ### Quickstart
 I provided a sample here on GitHub. Check it out.
-	**[TexenPlugin Sample](https://github.com/MikeMitterer/gradle-texen-plugin-sample)** 
+*	**[TexenPlugin Sample](https://github.com/MikeMitterer/gradle-texen-plugin-sample)** 
+*	**[What is Texen](http://velocity.apache.org/engine/devel/texen.html)**
 
 ### Configuration
 	buildscript {
