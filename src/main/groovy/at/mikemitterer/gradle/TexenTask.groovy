@@ -31,7 +31,7 @@ class TexenTask extends ConventionTask {
 
 
 		String classpath = project.configurations.getByName("velocityAntTask").asPath;
-		println "Classpath for texenx-ant-task ${classpath}"
+		//println "Classpath for texenx-ant-task ${classpath}"
 
 		ant.taskdef(name: 'texenx', classname: 'org.apache.velocity.texen.ant.TexenTask', classpath: classpath)
 		ant.texenx(
