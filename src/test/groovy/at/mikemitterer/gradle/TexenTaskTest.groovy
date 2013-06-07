@@ -10,6 +10,7 @@ class TexenTaskTest {
 	@Test
 	public void canAddTaskToProject() {
 		Project project = ProjectBuilder.builder().build()
+		project.apply plugin: 'texen'
 
 		def task = project.task('texen', type: TexenTask)
 

@@ -5,8 +5,10 @@ import org.gradle.api.Project
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
-//For passing arguments from gradle script.
+
 class TexenPluginExtension {
+	final Project project;
+
 	String baseDir
 
 	String controlTemplate
@@ -16,8 +18,8 @@ class TexenPluginExtension {
 
 	Boolean deleteReport
 
-	TexenPluginExtension() {
-		//this.project = project;
+	TexenPluginExtension(Project project) {
+		this.project = project;
 
 		baseDir			= "build/database"
 
@@ -39,17 +41,50 @@ class TexenPluginExtension {
 class VelocityTexenPlugin implements Plugin<Project> {
 	private static Logger logger = LoggerFactory.getLogger(VelocityTexenPlugin.class);
 
+	protected Project project
+	protected TexenPluginExtension pluginConvention
+
 	void apply(Project project) {
-		final TexenPluginExtension pluginextension = project.extensions.create("texenplugin", TexenPluginExtension)
-		project.convention.plugins.texenplugin = pluginextension
+		this.project = project;
 
-		project.task('texen',type: TexenTask) {
-			group = "Texen"
-			description = "Is capable of producing almost any sort of text output"
+		if (!project.convention.plugins.texenplugin) {
+			final TexenPluginExtension pluginConvention = new TexenPluginExtension(project)
+			project.convention.plugins.texenplugin = pluginConvention
+		}
+		this.pluginConvention = (TexenPluginExtension) project.convention.plugins.texenplugin
 
-			logger.info "Configuration in plugin: ${project.convention.plugins.texenplugin.baseDir}"
+		configureDependencies(project);
+		applyTasks(project)
 
-		} << { logger.info "Execution in plugin: ${project.convention.plugins.texenplugin.baseDir}" }
+		project.afterEvaluate { configure(project) }
+	}
+
+	//---------------------------------------------------------------------------------------------
+	// private
+	//---------------------------------------------------------------------------------------------
+	private void applyTasks(final Project project) {
+		project.task('texen', type: TexenTask, group: 'Texen', description: 'Is capable of producing almost any sort of text output') {}
+	}
+
+	private void configureDependencies(final Project project) {
+
+		project.configurations { velocityAntTask }
+		project.repositories { mavenCentral() }
+
+		project.dependencies {
+			velocityAntTask group: 'org.apache.velocity', 	name: 'velocity', 			version: '1.7'
+			velocityAntTask group: 'commons-lang', 		name: 'commons-lang', 		version: '2.6'
+			velocityAntTask group: 'commons-collections', 	name: 'commons-collections',version: '3.2.1'
+		}
+	}
+
+	private void configure(final Project project) {
+		logger.info "configure called in VelocityTexenPlugin"
+
+		if(project.tasks.texen instanceof TexenTask) {
+			final TexenTask task = project.tasks.texen
+			task.configure(project)
+		}
 	}
 }
 
