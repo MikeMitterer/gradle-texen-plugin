@@ -12,7 +12,8 @@ class TexenTaskTest {
 		Project project = ProjectBuilder.builder().build()
 		project.apply plugin: 'texen'
 
-		def task = project.task('texen', type: TexenTask)
+		def task = project.tasks.texen
+		//def task = project.task('texen', type: TexenTask)
 
 		assertTrue(task instanceof TexenTask)
 

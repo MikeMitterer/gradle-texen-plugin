@@ -25,23 +25,25 @@ class TexenTask extends ConventionTask {
 
 	@TaskAction
 	def texen() {
-		println "+--------------------------------------------------------------------------+"
-		println "  Generating files in ${baseDir}/${outputDir}...    "
-		println "+--------------------------------------------------------------------------+"
+		logger.info "+--------------------------------------------------------------------------+"
+		logger.info "  Generating files in ${baseDir}/${outputDir}...    "
+		logger.info "+--------------------------------------------------------------------------+"
 
 
 		String classpath = project.configurations.getByName("velocityAntTask").asPath;
 		//println "Classpath for texenx-ant-task ${classpath}"
 
 		ant.taskdef(name: 'texenx', classname: 'org.apache.velocity.texen.ant.TexenTask', classpath: classpath)
+
 		ant.texenx(
 				controlTemplate :	"${controlTemplate}",
-				outputDirectory : 	"${baseDir}/${outputDir}",
+				outputDirectory : 	"${outputDir}",
 				templatePath : 		"${baseDir}/${templateDir}",
 				outputFile : 		"${reportFile}"
 				)
+
 		if( deleteReport) {
-			ant.delete(file: "${baseDir}/${outputDir}/${reportFile}")
+			ant.delete(file: "${outputDir}/${reportFile}")
 		}
 	}
 
@@ -69,7 +71,7 @@ class TexenTask extends ConventionTask {
 		logger.info "---------------------------------------"
 		logger.info "baseDir: ${baseDir}"
 
-		logger.info "outputDir: ${baseDir}/${outputDir}"
+		logger.info "outputDir: ${outputDir}"
 		logger.info "templateDir: ${baseDir}/${templateDir}"
 
 		logger.info "controlTemplate: ${controlTemplate}"

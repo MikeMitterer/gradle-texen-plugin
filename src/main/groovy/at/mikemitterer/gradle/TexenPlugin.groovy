@@ -73,7 +73,7 @@ class VelocityTexenPlugin implements Plugin<Project> {
 
 		project.dependencies {
 			velocityAntTask group: 'org.apache.velocity', 	name: 'velocity', 			version: '1.7'
-			velocityAntTask group: 'commons-lang', 		name: 'commons-lang', 		version: '2.6'
+			velocityAntTask group: 'commons-lang', 		name: 'commons-lang', 			version: '2.6'
 			velocityAntTask group: 'commons-collections', 	name: 'commons-collections',version: '3.2.1'
 		}
 	}
